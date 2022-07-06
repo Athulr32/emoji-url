@@ -1,0 +1,87 @@
+
+
+html,body{
+overflow-x: hidden;
+
+}
+
+
+.form-main {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.form-content {
+    width: 95%;
+    height: 50vh;
+    background-color: aliceblue;
+    align-items: center;
+    border-radius: 20px;
+    padding: 2rem;
+}
+
+form {
+    width: 90%;
+    font-size: 1.5rem;
+   margin-top:7rem
+}
+
+input {
+    width: 50%;
+    height: 1rem;
+}
+
+.website {
+
+    margin: 0px 0px 20px;
+
+
+}
+
+.emoji {}
+
+.emoji input {
+
+    margin-left: 1.1rem;
+}
+
+.website input{
+    margin-left:1.6rem;
+}
+.button {
+    border: none;
+    margin: 30px;
+    background-color: black;
+    color: white;
+    width: 5rem;
+    height: 3rem;
+    border-radius: 10px;
+}
+
+.disable {
+
+    display: none;
+}
+
+
+#shorted {
+
+    width: 90%;
+    padding: 30px;
+    font-size: 1rem;
+}
+
+#shorted >div {
+
+    padding:30px;
+
+}
+
+.error{
+
+   text-align: center;
+    font-size: 1.4rem;
+}

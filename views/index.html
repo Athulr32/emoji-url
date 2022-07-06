@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" style="height: 100%">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/styles/style.css" rel="stylesheet">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div style="text-align:center ;">
+
+        <div style="font-size:20px">
+            <h1>Short Your URL </h2>
+                <h3>Using</h3>
+                <h2>Emoji
+            </h1>
+        </div>
+
+        <div class="form-main" id="form-main">
+
+            <div class="form-content">
+                <form>
+                    <div class="website">
+                        <label>URL</label>
+                        <input id="website" name="site" type="text">
+                    </div>
+                    <div class="emoji">
+                        <label>Emoji</label>
+                        <input id="emoji" name="emoji" type="text">
+                    </div>
+                    <button onclick="buttonClickHandler()" class="button" type="button">Submit</button>
+                </form>
+            </div>
+
+
+            <div id="shorted" class="disable"  >
+                <div>
+                    <span>Original Site: </span>
+                    <span ><a id="oglink"></a></span>
+                </div>
+                <div>
+                    <span>Shorted Site: </span>
+                    <span ><a id="shortlink"> </a></span>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+
+
+</body>
+
+<script>
+
+    async function buttonClickHandler(e) {
+     
+
+    
+        let website = document.getElementById("website").value;
+        let emoji = document.getElementById("emoji").value;
+        let oglink = document.getElementById("oglink");
+        let shortedLink = document.getElementById("shortlink")
+        let formMain = document.querySelector(".form-content")
+        let shorted = document.getElementById("shorted")
+        let form = document.querySelector("form")
+        let err = document.querySelector(".error");
+        if(err){
+            err.remove();
+        }
+
+        const res = await fetch("/register", {
+            method: "POST",
+            body: JSON.stringify({
+                site: website,
+                emoji: emoji
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+
+        })
+        const data = await res.json();
+        if (res.status === 200) {
+
+            let error = document.createElement("div");
+            error.innerHTML = data.msg
+            error.classList.add("error")
+
+            formMain.insertBefore(error,form)
+
+        }
+        else {
+
+            shorted.classList.remove("disable");
+            oglink.innerHTML = data.url
+            shortedLink.innerHTML = data.shortURL
+
+        }
+
+    }
+
+</script>
+
+</html>
